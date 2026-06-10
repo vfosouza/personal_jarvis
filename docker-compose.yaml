@@ -16,3 +16,11 @@ services:
     depends_on:
       - ollama
       - qdrant
+
+  indexer:
+    build: ./indexer
+    depends_on:
+      - qdrant
+    volumes:
+      - /Users/vfosouza/Workspace:/repositories/Workspace
+      - /Users/vfosouza/Workspace_Servier:/repositories/Workspace_Servier

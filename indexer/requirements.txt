@@ -1,5 +1,2 @@
-fastapi
-uvicorn
-requests
 qdrant-client
 sentence-transformers

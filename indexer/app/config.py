@@ -1,0 +1,34 @@
+QDRANT_HOST="qdrant"
+QDRANT_PORT=6333
+COLLECTION_NAME="repositories"
+CHUNK_SIZE=2000
+CHUNK_OVERLAP=300
+SUPPORTED_EXTENSIONS={
+    ".py",
+    ".sql",
+    ".yml",
+    ".yaml",
+    ".json",
+    ".md",
+    ".txt",
+    ".tf",
+    ".sh",
+    ".cfg",
+    ".ini"
+}
+IGNORE_DIRS = {
+    ".git",
+    ".idea",
+    ".vscode",
+    ".venv",
+    "venv",
+    "__pycache__",
+    "node_modules",
+    "target",
+    "build",
+    "dist",
+    ".terraform",
+    "dbt_packages",
+    ".pytest_cache",
+    ".mypy_cache"
+}
