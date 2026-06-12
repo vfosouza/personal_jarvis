@@ -1,5 +1,5 @@
 from pathlib import Path
-from config import SUPPORTED_EXTENSIONS, IGNORE_DIRS
+from config import SUPPORTED_EXTENSIONS, IGNORE_DIRS, MAX_FILE_SIZE
 
 def load_files(root_path: str):
     print(f"Scanning {root_path}")
@@ -12,6 +12,9 @@ def load_files(root_path: str):
         if file.suffix not in SUPPORTED_EXTENSIONS:
             continue
         if file.name.startswith("."):
+            continue
+        if file.stat().st_size > MAX_FILE_SIZE:  # Ignorar arquivos muito grandes
+            print(f"File {file} exceeds max size of {MAX_FILE_SIZE} bytes. Skipping.")
             continue
 
         content = file.read_text(

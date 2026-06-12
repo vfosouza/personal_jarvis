@@ -4,15 +4,16 @@ from app.config import (
     OLLAMA_URL
 )
 
-def ask_llm(
-        prompt: str
-):
+def ask_llm(prompt: str):
     response = requests.post(
         f"{OLLAMA_URL}/api/generate",
         json={
             "model": OLLAMA_MODEL,
             "prompt": prompt,
-            "stream": False
+            "stream": False,
+            "options": {
+                "temperature": 0
+            }
         },
         timeout=300
     )
@@ -20,4 +21,9 @@ def ask_llm(
     return response.json()["response"]
 
 def health():
-    return ask_llm("Responda apenas OK")
+    return ask_llm("""
+    Responda apenas OK.
+    Não explique.
+    Não pense.
+    Não mostre raciocínio.
+    """)

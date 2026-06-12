@@ -4,11 +4,31 @@ services:
     container_name: ollama
     ports:
       - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    restart: unless-stopped
+  ollama-init:
+    image: ollama/ollama
+    container_name: ollama-init
+    depends_on:
+      - ollama
+    volumes:
+      - ollama_data:/root/.ollama
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        echo "Aguardando Ollama..."
+        sleep 15
+        ollama pull qwen2.5:1.5b
+        echo "Modelo carregado."
   qdrant:
     image: qdrant/qdrant
     container_name: qdrant
     ports:
       - "6333:6333"
+    volumes:
+      - qdrant_data:/qdrant/storage
   api:
     build: ./api
     ports:
@@ -16,7 +36,6 @@ services:
     depends_on:
       - ollama
       - qdrant
-
   indexer:
     build: ./indexer
     depends_on:
@@ -24,3 +43,6 @@ services:
     volumes:
       - /Users/vfosouza/Workspace:/repositories/Workspace
       - /Users/vfosouza/Workspace_Servier:/repositories/Workspace_Servier
+volumes:
+  ollama_data:
+  qdrant_data:

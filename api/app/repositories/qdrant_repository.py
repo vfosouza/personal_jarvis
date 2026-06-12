@@ -16,16 +16,10 @@ client = QdrantClient(
 )
 
 
-def search_similar(
-    question: str,
-    limit: int = 1
-):
-
+def search_similar(question: str, limit: int = 3):
     vector = generate_embedding(question)
-
     print(f"Question: {question}")
     print(f"Embedding size: {len(vector)}")
-
     response = client.query_points(
         collection_name=COLLECTION_NAME,
         query=vector,
