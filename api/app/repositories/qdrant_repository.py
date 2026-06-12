@@ -1,4 +1,5 @@
 from qdrant_client import QdrantClient
+from qdrant_client.models import (Filter, FieldCondition, MatchText)
 
 from app.config import (
     QDRANT_HOST,
@@ -27,3 +28,19 @@ def search_similar(question: str, limit: int = 3):
     )
     print(f"Results found: {len(response.points)}")
     return response.points
+
+def search_keyword(term: str):
+    response = client.scroll(
+        collection_name=COLLECTION_NAME,
+        scroll_filter=Filter(
+            must=[
+                FieldCondition(
+                    key="content",
+                    match=MatchText(text=term)
+                )
+            ]
+        ),
+        limit=20,
+        with_payload=True
+    )
+    return response[0]

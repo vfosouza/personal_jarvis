@@ -4,8 +4,14 @@ def build_prompt(
     question: str,
     context: str) -> str:
     return f"""
-            Você é um assistente especialista em engenharia de dados.
-            Utilize APENAS o contexto abaixo para responder.
+            Você é um especialista em engenharia de dados.
+            Responda APENAS usando os resultados encontrados.
+            Liste:
+            - arquivo
+            - trecho encontrado
+            - explicação do uso
+            
+            RESULTADOS:
             CONTEXTO:
             {context}
             PERGUNTA:
