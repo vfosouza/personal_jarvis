@@ -2,7 +2,9 @@ QDRANT_HOST="qdrant"
 QDRANT_PORT=6333
 COLLECTION_NAME="repositories"
 CHUNK_SIZE=2000
-CHUNK_OVERLAP=300
+CHUNK_OVERLAP=200
+BATCH_SIZE = 32
+MAX_FILE_SIZE = 500_000
 SUPPORTED_EXTENSIONS={
     ".py",
     ".sql",
@@ -20,8 +22,10 @@ IGNORE_DIRS = {
     ".git",
     ".idea",
     ".vscode",
+    "venv",
     ".venv",
     "venv",
+    "target",
     "__pycache__",
     "node_modules",
     "target",
@@ -30,5 +34,6 @@ IGNORE_DIRS = {
     ".terraform",
     "dbt_packages",
     ".pytest_cache",
-    ".mypy_cache"
+    ".mypy_cache",
+    ".next"
 }

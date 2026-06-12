@@ -21,6 +21,16 @@ def create_collection_if_not_exists():
         collection_name=COLLECTION_NAME,
         vectors_config=VectorParams(size=384, distance=Distance.COSINE)
     )
+    client.create_payload_index(
+        collection_name=COLLECTION_NAME,
+        field_name="content",
+        field_schema="text"
+    )
+    client.create_payload_index(
+        collection_name=COLLECTION_NAME,
+        field_name="filename",
+        field_schema="keyword"
+    )
 
 def create_collection():
     collections = client.get_collections()
@@ -35,6 +45,16 @@ def create_collection():
     client.create_collection(
         collection_name="repositories",
         vectors_config=VectorParams(size=384, distance=Distance.COSINE)
+    )
+    client.create_payload_index(
+        collection_name=COLLECTION_NAME,
+        field_name="content",
+        field_schema="text"
+    )
+    client.create_payload_index(
+        collection_name=COLLECTION_NAME,
+        field_name="filename",
+        field_schema="keyword"
     )
 
 def save_chunk(
