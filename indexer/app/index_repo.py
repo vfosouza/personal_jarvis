@@ -35,7 +35,8 @@ def run():
                     "filename": file.name,
                     "extension": file.suffix,
                     "repository": file.parts[2],
-                    "content": chunk
+                    "content": chunk,
+                    "content_lower": chunk.lower()
                 }
             )
             point_id += 1

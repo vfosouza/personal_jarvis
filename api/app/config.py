@@ -9,8 +9,8 @@ COLLECTION_NAME = "repositories"
 REFERENCE_PATTERNS = [
     "onde usei",
     "onde foi usado",
-    "onde está",
     "onde aparece",
+    "onde está",
     "em qual arquivo",
     "quem usa",
     "quem chama",
@@ -18,5 +18,12 @@ REFERENCE_PATTERNS = [
     "referencias",
     "buscar",
     "procure",
-    "localize"
+    "localize",
+    "dependência",
+    "dependencias",
+    "implementa",
+    "injeta",
+    "extends",
+    "repository",
+    "service",
 ]

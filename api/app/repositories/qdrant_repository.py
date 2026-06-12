@@ -44,3 +44,19 @@ def search_keyword(term: str):
         with_payload=True
     )
     return response[0]
+
+def search_by_filename(filename: str, limit: int = 20):
+    response = client.scroll(
+        collection_name=COLLECTION_NAME,
+        scroll_filter=Filter(
+            must=[
+                FieldCondition(
+                    key="filename",
+                    match=MatchText(text=filename)
+                )
+            ]
+        ),
+        limit=limit,
+        with_payload=True
+    )
+    return response[0]
